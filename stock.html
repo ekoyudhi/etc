@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+<div class="container">
+<div class="row">
+  <div class="col-6 col-md-4">
+    <div class="form-group">
+    <label for="txt_buy_price">Buy Price</label>
+    <input class="form-control divide" type="text" id="txt_buy_price" placeholder="Buy Price">
+    <label for="txt_lot">Lot</label>
+    <input class="form-control divide" type="text" id="txt_lot" placeholder="Lot">
+    <label for="txt_sell_price">Sell Price</label>
+    <input class="form-control divide" type="text" id="txt_sell_price" placeholder="Sell Price">
+    <button class="btn btn-primary" id="btn_calc">Calculate</button>
+    </div>
+    </div>
+  <div class="col-6 col-md-4">
+    <label for="txt_total_buy_price">Total Buy Price</label>
+    <input class="form-control divide" type="text" id="txt_total_buy_price" placeholder="Total Buy Price" disabled>
+    <label for="txt_total_sell_price">Total Sell Price</label>
+    <input class="form-control divide" type="text" id="txt_total_sell_price" placeholder="Total Sell Price" disabled>
+    </div>
+  <div class="col-6 col-md-4">
+    <label for="txt_fee_buy">Fee Buy</label>
+    <input class="form-control divide" type="text" id="txt_fee_buy" placeholder="Fee Buy" disabled>
+    <label for="txt_fee_sell">Fee Sell</label>
+    <input class="form-control divide" type="text"  id="txt_fee_sell" placeholder="Fee Sell" disabled>
+    <label for="txt_tax">Tax</label>
+    <input class="form-control divide" type="text"  id="txt_tax" placeholder="Tax" disabled>
+    <label for="txt_profit">Profit</label>
+    <input class="form-control divide" type="text"  id="txt_profit" placeholder="Profit" disabled>
+    </div>
+</div>
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="number-divider.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".divide").divide();
+    $("#txt_buy_price").change(function() {
+        $("#txt_sell_price").val($("#txt_buy_price").val());
+    });
+
+    $("#btn_calc").click(function() {
+        let buy_price = $("#txt_buy_price").val();
+        let lot = $("#txt_lot").val();
+        let sell_price = $("#txt_sell_price").val();
+
+        let total_buy_price = Math.round(buy_price * lot * 100);
+
+        let total_sell_price = Math.round(sell_price * lot * 100);
+
+        let fee_buy = Math.round(0.18 / 100 * total_buy_price);
+        let fee_sell = Math.round(0.18 / 100 * total_sell_price);
+        let tax = Math.round(0.1 / 100 * total_sell_price);
+
+        let c_buy = Math.round(total_buy_price + fee_buy);
+        let c_sell = Math.round(total_sell_price - fee_sell - tax);
+        let profit = Math.round(c_sell - c_buy);
+
+        $("#txt_total_buy_price").val(total_buy_price);
+        $("#txt_total_sell_price").val(total_sell_price);
+
+        $("#txt_fee_buy").val(fee_buy);
+        $("#txt_fee_sell").val(fee_sell);
+        $("#txt_tax").val(tax);
+        $("#txt_profit").val(profit);
+    });
+
+    
+});
+</script>
+  </body>
+</html>
