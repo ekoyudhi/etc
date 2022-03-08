@@ -10,3 +10,9 @@
         "algo": "rx/arq"
     }
 ],
+
+xmrwallet.com
+441BCP9coqA2HhpZosq49R1QZNcoFQ2jrRPETYuDVCS1Wcpsgi9jKzVUrAKTs6xHyWUu113fHCYtFEKSGGaU72awRM6SL7t
+
+freewallet.org xmr
+87VNMsbM7TjAprQn4tZPSDgcsahgiJCgPdigz73fckaweZGyXFxApyhdATfrtHqTZe7auy573wzjHht4z1ds465EKzvnxsP
